@@ -1,0 +1,245 @@
+{
+  "info": {
+    "_postman_id": "8d3249ed-cc16-45c5-9117-29e32ea26ed3",
+    "name": "stripe-integration",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "54162909",
+    "_collection_link": "https://go.postman.co/collection/54162909-8d3249ed-cc16-45c5-9117-29e32ea26ed3?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Login",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"email\": \"test@example.com\", \"password\": \"password123\"}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/auth/login",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "auth",
+            "login"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Register",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"email\": \"garry.smith@example.com\", \"password\": \"password123\"}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/auth/signup",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "auth",
+            "signup"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Current Plan/Offerrings",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/plans",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "plans"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Stripe Checkout",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2OWU2MGU0Yzk3MWJlYWRiMTFmZWNkOGQiLCJlbWFpbCI6ImdhcnJ5LnNtaXRoQGV4YW1wbGUuY29tIiwicm9sZSI6InVzZXIiLCJpYXQiOjE3NzY2ODQ2NDIsImV4cCI6MTc3NjY4ODI0Mn0.JUUzTy-WvCbLRw-tHvySRqGEBJ6hdiw1RsR02IpCsXI"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"planId\": \"basic\"}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/checkout",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "checkout"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "User Subscription",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2OWU2MGU0Yzk3MWJlYWRiMTFmZWNkOGQiLCJlbWFpbCI6ImdhcnJ5LnNtaXRoQGV4YW1wbGUuY29tIiwicm9sZSI6InVzZXIiLCJpYXQiOjE3NzY2ODQ2NDIsImV4cCI6MTc3NjY4ODI0Mn0.JUUzTy-WvCbLRw-tHvySRqGEBJ6hdiw1RsR02IpCsXI"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:3000/subscription",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "subscription"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Admin Subscription",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2OWU1ZGU1MmZkMTVkMmM0YzZhMTc4NjAiLCJlbWFpbCI6InRlc3RAZXhhbXBsZS5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NzY2ODQ3NjcsImV4cCI6MTc3NjY4ODM2N30.Mf_UNs7ePQK0iCcKRUg3_cCFE7rN6Jy_lWqkLiYWHQg"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:3000/admin/subscriptions",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "admin",
+            "subscriptions"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Cancel Subscription",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2OWU2MGU0Yzk3MWJlYWRiMTFmZWNkOGQiLCJlbWFpbCI6ImdhcnJ5LnNtaXRoQGV4YW1wbGUuY29tIiwicm9sZSI6InVzZXIiLCJpYXQiOjE3NzY2ODQ2NDIsImV4cCI6MTc3NjY4ODI0Mn0.JUUzTy-WvCbLRw-tHvySRqGEBJ6hdiw1RsR02IpCsXI"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:3000/subscription/cancel",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "subscription",
+            "cancel"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
