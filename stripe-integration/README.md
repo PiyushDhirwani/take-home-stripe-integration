@@ -181,6 +181,24 @@ src/
 └── main.ts            # Bootstrap (body parser, Swagger, global filter)
 ```
 
+## MongoDB Collections
+
+The following collections are created **automatically** by Mongoose on first use — no manual setup required:
+
+| Collection | Description |
+|---|---|
+| `users` | Stores user accounts (email, passwordHash, role) |
+| `subscriptions` | Stores subscription records (userId, planId, status, stripeSubscriptionId) |
+
+To verify in `mongosh`:
+```bash
+mongosh
+use stripe-integration
+show collections
+db.users.find().pretty()
+db.subscriptions.find().pretty()
+```
+
 ## Making a User Admin
 
 ```bash
@@ -188,6 +206,16 @@ mongosh
 use stripe-integration
 db.users.updateOne({ email: "user@example.com" }, { $set: { role: "admin" } })
 ```
+
+## References & Documentation
+
+- [MongoDB Community Download](https://www.mongodb.com/try/download/community)
+- [Stripe Checkout Sessions API](https://docs.stripe.com/api/checkout/sessions/object)
+- [Stripe Development Dashboard](https://docs.stripe.com/development/dashboard)
+- [Stripe Checkout Session Flow (Medium)](https://medium.com/@surajit.das0320/stripe-checkout-session-flow-b83bd87d22e2)
+- [Stripe Java - Checkout Session Model](https://stripe.dev/stripe-java/com/stripe/model/checkout/Session.html)
+- [How to Install and Setup NestJS (GeeksForGeeks)](https://www.geeksforgeeks.org/javascript/how-to-install-and-setup-first-nestjs-application/)
+- [Next.js - Create Next App (GeeksForGeeks)](https://www.geeksforgeeks.org/nextjs/next-js-create-next-app/)
 
 ## License
 
